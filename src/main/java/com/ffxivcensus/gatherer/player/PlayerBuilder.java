@@ -165,7 +165,7 @@ public class PlayerBuilder {
             player.setFreeCompany(getFreeCompanyFromPage(doc));
             player.setDateImgLastModified(getDateLastUpdatedFromPage(doc, playerID));
             setLevels(player, getLevelsFromPage(doc));
-            player.setGearSet(getGearSet(doc));
+            player.setGearSet(getGearSet(player, doc));
             player.setMounts(getMountsFromPage(doc));
             player.setMinions(getMinionsFromPage(doc));
             player.setHas30DaysSub(doesPlayerHaveMinion(player, "Wind-up Cursor"));
@@ -466,8 +466,9 @@ public class PlayerBuilder {
         return dateLastModified;
     }
 
-    private GearSet getGearSet(final Document doc) {
+    private GearSet getGearSet(final PlayerBean player, final Document doc) {
         GearSet gearSet = new GearSet();
+        gearSet.setCharacterId(player.getId());
         
         Element characterView = doc.getElementsByClass("character__view").get(0);
         
