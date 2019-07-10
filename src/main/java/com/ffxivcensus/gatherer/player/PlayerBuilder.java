@@ -226,6 +226,8 @@ public class PlayerBuilder {
         } catch(CharacterDeletedException cde) {
             player.setCharacterStatus(CharacterStatus.DELETED);
         }
+        // Update last checked date to today
+        player.setLastChecked(new Date());
         return player;
     }
 
